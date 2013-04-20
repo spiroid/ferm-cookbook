@@ -23,5 +23,28 @@ table filter {
   }
 }
 
+domain ip6 table filter {
+  chain INPUT {
+    policy DROP;
+
+    mod state state INVALID DROP;
+    mod state state (ESTABLISHED RELATED) ACCEPT;
+
+    interface lo ACCEPT;
+
+    proto ipv6-icmp ACCEPT;
+  }
+
+  chain OUTPUT {
+    policy ACCEPT;
+    mod state state INVALID DROP;
+  }
+
+  chain FORWARD {
+    policy ACCEPT;
+    mod state state INVALID DROP;
+  }
+}
+
 @include '/etc/ferm/ferm.d/';
 
