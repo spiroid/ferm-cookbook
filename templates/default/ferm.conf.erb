@@ -9,7 +9,7 @@ table filter {
 
     interface lo ACCEPT;
 
-    proto icmp icmp-type (echo-reply echo-request) mod state state NEW ACCEPT;
+    proto icmp ACCEPT;
   }
 
   chain OUTPUT {
