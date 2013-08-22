@@ -1,0 +1,16 @@
+---
+driver_plugin: docker
+driver_config:
+  require_chef_omnibus: "10.24.0"
+
+platforms:
+- name: debian
+  driver_config:
+    image: "tianon/debian:7.1"
+    plateform: "debian"
+
+suites:
+- name: default
+  run_list:
+  - recipe[ferm]
+  attributes: {}
